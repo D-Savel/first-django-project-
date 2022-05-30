@@ -1,0 +1,16 @@
+{% extends 'listings/baseHTML.html' %}
+
+{% block baseHTMLContent%}
+<h2>{{user.id}} : {{ user.firstName }} {{ user.lastName|upper }} </h2>
+
+<ul>
+  <li>Age : {{user.age}}</li>
+  <li>Mail : {{user.mail}}</li>
+  <li>Date d'enregistrement : {{user.registrationDate|date:"d/m/Y"}}</li>
+  <li>{{user.registrationDate|date:"d/m/Y"}}</li>
+  <li>Language : {{user.get_language_display}}</li>
+</ul>
+<p>
+  <li> Participe au projet : {{user.project}} </li>
+</p>
+{% endblock %}

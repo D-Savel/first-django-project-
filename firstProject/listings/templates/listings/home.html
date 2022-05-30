@@ -1,14 +1,22 @@
 {% extends 'listings/baseHTML.html' %}
 
 {% block baseHTMLContent%}
-<h1>Hello Django!</h1>
+<h1>Users</h1>
 <p> Les utilisateurs enregistrés sont au nombre de {{users|length}}:</p>
 <ul>
   {% for user in users %}
-  <li> {{user.id}} : {{user.firstName}} {{user.lastName|upper}} a {{user.age}} ans, son adresse mail est :
-    {{user.mail}},
-    enregistré
-    le {{user.registrationDate|date:"d/m/Y"}}, practice language : {{user.language}}</li>
+  <li> <a href="/users/{{ user.id }}/">{{user.id}} : {{user.firstName}} {{user.lastName|upper}}</a></li>
   {% endfor %}
 </ul>
+
+<h1>Projects</h1>
+<p> Les projets enregistrés sont au nombre de {{projects|length}}:</p>
+<ul>
+  {% for project in projects %}
+  <li> {{project.id}} : {{project.name|upper}}
+  </li>
+  {% endfor %}
+</ul>
+
+
 {% endblock %}
