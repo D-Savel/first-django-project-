@@ -1,0 +1,14 @@
+{% extends 'listings/baseHTML.html' %}
+
+{% block baseHTMLContent%}
+<h1>Hello Django!</h1>
+<p> Les utilisateurs enregistrés sont au nombre de {{users|length}}:</p>
+<ul>
+  {% for user in users %}
+  <li> {{user.id}} : {{user.firstName}} {{user.lastName|upper}} a {{user.age}} ans, son adresse mail est :
+    {{user.mail}},
+    enregistré
+    le {{user.registrationDate|date:"d/m/Y"}}, practice language : {{user.language}}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
