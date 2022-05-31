@@ -11,3 +11,7 @@ html {
 .buttonContainer {
   text-align: center;
 }
+
+f.errorlist {
+  margin-bottom: -10px
+}

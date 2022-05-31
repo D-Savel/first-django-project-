@@ -5,15 +5,20 @@
 <p> Les utilisateurs enregistrés sont au nombre de {{users|length}}:</p>
 <ul>
   {% for user in users %}
-  <li> <a href="/users/{{ user.id }}/">{{user.id}} : {{user.firstName}} {{user.lastName|upper}}</a></li>
+  <li> <a href="/users/{{ user.id }}/">id#{{user.id}} : {{user.firstName}} {{user.lastName|upper}}</a>
+    <button><a href="/users/{{ user.id }}/update">Modifier</a></button>
+    <button><a href="/users/{{ user.id }}/delete">Supprimer</a></button>
+  </li>
   {% endfor %}
 </ul>
-
+<div>
+  <button><a href="{% url 'addUser' %}">Add user</a></button>
+</div>
 <h1>Projects</h1>
 <p> Les projets enregistrés sont au nombre de {{projects|length}}:</p>
 <ul>
   {% for project in projects %}
-  <li> {{project.id}} : {{project.name|upper}}
+  <li> id#{{project.id}} : {{project.name|upper}}
   </li>
   {% endfor %}
 </ul>

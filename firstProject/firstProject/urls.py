@@ -19,7 +19,10 @@ from listings import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home),
-    path('users/<int:id>/', views.userDetail),
-    path('button/', views.button),
+    path('home/', views.home, name='home'),
+    path('users/<int:id>/', views.userDetail, name='userDetail'),
+    path('button/', views.button, name='button'),
+    path('addUser/', views.addUser, name='addUser'),
+    path('users/<int:id>/update', views.userUpdate, name='userUpdate'),
+    path('users/<int:id>/delete', views.userDelete, name='userDelete'),
 ]

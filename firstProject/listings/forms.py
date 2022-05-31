@@ -1,9 +1,9 @@
 from django import forms
+from listings.models import User
 
 
-class UserForm(forms.Form):
-    firstName = forms.CharField(max_length=50)
-    lastNName = forms.CharField(max_length=50)
-    email = forms.EmailField()
-    address = forms.CharField(max_length=150)
-    age = forms.IntegerField()
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'  # for all fields
+        # exclude = ('isMajor',)

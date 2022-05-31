@@ -1,0 +1,14 @@
+{% extends 'listings/baseHTML.html' %}
+
+{% block baseHTMLContent%}
+
+<h2>delete user</h2>
+
+<p>Etes-vous sûr de vouloir supprimer user : {{ user.firstName }} {{ user.lastName }} ?</p>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <input type="submit" value="supprimer">
+</form>
+
+{% endblock%}
