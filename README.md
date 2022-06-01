@@ -9,8 +9,11 @@ First app with Django
 - if you don't have victual machine: `pip install virtualenv`
 - install vurtual env: `virtualenv env -p python3`
 - activate virtual env: `. env/bin/activate`
-- cd first-django-project-
+- `cd first-django-project-`
 - install the requirements: `pip install -r requirements.txt`
+- make migrations :
+  `python3 manage.py makemigrations`
+  `python3 manage.py migrate`
 
 Then run Django server:
   
@@ -18,4 +21,14 @@ Then run Django server:
   cd first-django-project-/firstProject
   python3 manage.py runserver
   ```
+
+If you want to activate livereload:
+
+```sh
+. env/bin/activate
+cd first-django-project-/firstProject
+python3 manage.py livereload
+```
+
+
 Open http://127.0.0.1:8000/home/ in web browser
