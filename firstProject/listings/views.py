@@ -5,8 +5,12 @@ from listings.models import User
 from listings.models import Project
 from listings.forms import UserForm
 from django.contrib import messages
+import requests
+import environ
 
-usersLength = len(User.objects.all())
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 
 def home(request):
@@ -82,3 +86,28 @@ def userDelete(request, id):
     return render(request,
                   'listings/userDelete.html',
                   {'user': user})
+
+
+def geoapi(request):
+
+    ip_address = request.META.get('HTTP_X_FORWARDED_FOR', '')
+    # use api with your ip Address for retrieve geodata
+    response = requests.get('http://ip-api.com/json/%s' % ip_address)
+    geodata = response.json()
+    lat = geodata['lat']
+    lon = geodata['lon']
+    API_KEY = env("API_KEY")
+    # prepare url for display a map with api
+    # API use api-key given by locationiq
+    # API_KEY must be save in .env file at the root of the project (same as settings.py)
+    # API_KEY=<YOUR_API_KEY> (without '')
+    url = f"""https://maps.locationiq.com/v3/staticmap?key={API_KEY}&center=43.66,3.9726&size=800x800&zoom=13&markers=size:small|color:red|{lat},{lon}"""
+
+    return render(request, 'listings/geoapi.html', {
+        'ip': geodata['query'],
+        'country': geodata['country'],
+        'latitude': geodata['lat'],
+        'longitude': geodata['lon'],
+        'city': geodata['city'],
+        'url': url
+    })

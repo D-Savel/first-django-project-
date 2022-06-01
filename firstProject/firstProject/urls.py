@@ -23,6 +23,7 @@ urlpatterns = [
     path('users/<int:id>/', views.userDetail, name='detail'),
     path('button/', views.button, name='button'),
     path('addUser/', views.addUser, name='add'),
+    path('geoapi/', views.geoapi, name='geoapi'),
     path('users/<int:id>/update', views.userUpdate, name='update'),
     path('users/<int:id>/delete', views.userDelete, name='delete'),
 ]
