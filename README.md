@@ -3,9 +3,14 @@ First app with Django
 
 ## Getting started for local running
 
-Clone the repo into your project directory :
+### Environment
 
-  `git clone https://github.com/D-Savel/first-django-project-.git`
+- Clone the repo into your project directory: `git clone https://github.com/D-Savel/first-django-project-.git`
+- if you don't have victual machine: `pip install virtualenv`
+- install vurtual env: `virtualenv env -p python3`
+- activate virtual env: `. env/bin/activate`
+- cd first-django-project-
+- install the requirements: `pip install -r requirements.txt`
 
 Then run Django server:
   
