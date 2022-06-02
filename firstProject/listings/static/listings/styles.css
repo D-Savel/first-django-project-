@@ -5,7 +5,7 @@ html {
 .button {
   background: rgb(211, 49, 95);
   align-items: center;
-  padding: 0.5rem
+  padding: 0.8rem
 }
 
 .buttonContainer {
@@ -14,4 +14,9 @@ html {
 
 f.errorlist {
   margin-bottom: -10px
+}
+
+.counter {
+  background: hsl(0, 0%, 100%);
+  border: 1rem
 }

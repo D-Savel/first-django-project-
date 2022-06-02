@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home, name='home'),
     path('users/<int:id>/', views.userDetail, name='detail'),
-    path('button/', views.button, name='button'),
+    path('counter/', views.counter, name='counter'),
     path('addUser/', views.addUser, name='add'),
     path('geoapi/', views.geoapi, name='geoapi'),
     path('users/<int:id>/update', views.userUpdate, name='update'),

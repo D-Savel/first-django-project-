@@ -1,0 +1,25 @@
+{% extends 'listings/baseHTML.html' %}
+
+{% block baseHTMLContent%}
+<div class="buttonContainer">
+  <h1 class="counter">
+    {% if request.session.count %}
+    {{request.session.count}}
+    {%else%}
+    0
+    {%endif%}</h1>
+  <br>
+  <form method="post"> {% csrf_token %}
+    <button name="counter+" class="button">+</button>
+  </form>
+  <br>
+  <form method="post"> {% csrf_token %}
+    <button name="counter-" class="button">-</button>
+  </form>
+  <br>
+  <form method="post"> {% csrf_token %}
+    <button name="reset" class="button">Reset</button>
+  </form>
+  <p> Django button test (session variable)</p>
+</div>
+{% endblock %}
