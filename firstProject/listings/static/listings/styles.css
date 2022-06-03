@@ -18,5 +18,11 @@ f.errorlist {
 
 .counter {
   background: hsl(0, 0%, 100%);
-  border: 1rem
+  border: 1rem;
+  padding: 0.8rem;
+}
+
+.card {
+  background: hsl(0, 0%, 100%);
+  border: 1rem;
 }

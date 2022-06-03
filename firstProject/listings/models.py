@@ -1,18 +1,20 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
-class Language(models.TextChoices):
-    JavaScript = 'JavaScript'
-    CPlus = 'C++'
-    CSharp = 'C#'
-    Python = 'Python'
-    PHP = 'PHP'
-    none = 'None'
+LANGUAGE_CHOICES = (
+    ('None', '---'),
+    ('JAVASCRIPT', 'JavaScript'),
+    ('CPLUS', 'C++'),
+    ('CSHARP', 'C#'),
+    ('PYTHON', 'Python'),
+    ('PHP', 'PHP'),
+)
 
 
 class Project(models.Model):
     name = models.fields.CharField(max_length=30)
-    description = models.fields.CharField(max_length=100)
+    description = models.fields.CharField(default='No project', max_length=100)
 
     # Change name object in Django administration
     def __str__(self):
@@ -29,9 +31,9 @@ class User(models.Model):
     registrationDate = models.fields.DateTimeField(auto_now=True)
     isMajor = models.fields.BooleanField()
     language = models.fields.CharField(
-        choices=Language.choices, null=True, default='----', max_length=15)
+        choices=LANGUAGE_CHOICES, null=True, default='----', max_length=15)
     project = models.ForeignKey(
-        Project, default='----', null=True, on_delete=models.SET_NULL)
+        Project, default='No project', null=True, on_delete=models.SET_NULL)
 
     # Change name object in Django administration
     def __str__(self):

@@ -24,6 +24,7 @@ urlpatterns = [
     path('counter/', views.counter, name='counter'),
     path('addUser/', views.addUser, name='add'),
     path('geoapi/', views.geoapi, name='geoapi'),
+    path('swapi/', views.swapi, name='swapi'),
     path('users/<int:id>/update', views.userUpdate, name='update'),
     path('users/<int:id>/delete', views.userDelete, name='delete'),
 ]

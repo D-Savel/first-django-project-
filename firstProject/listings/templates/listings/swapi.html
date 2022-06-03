@@ -1,0 +1,62 @@
+{% extends 'listings/baseHTML.html' %}
+
+{% block baseHTMLContent%}
+
+<h2>Star Wars</h2>
+
+<form method='post'>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type='submit' value='submit'>
+</form>
+
+<div class="swapiContainer">
+  {% if category == 'people' %}
+  <h2>PERSONNAGES STAR WARS</h2>
+  {% for person in swapi.results %}
+  <div class="card">
+    <ul>
+      <li>Nom: {{person.name}}</li>
+      <li>Année de naissance: {{person.birth_year}}</li>
+    </ul>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% if category == 'vehicles' %}
+  <h2>VEHICULES STAR WARS</h2>
+  {% for vehicle in swapi.results %}
+  <div class="card">
+    <ul>
+      <li>Nom: {{vehicle.name}}</li>
+      <li>Modèle: {{vehicle.model}}</li>
+    </ul>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% if category == 'planets' %}
+  <h2>PLANETES STAR WARS</h2>
+  {% for planet in swapi.results %}
+  <div class="card">
+    <ul>
+      <li>Nom: {{planet.name}}</li>
+      <li>Terrain: {{planet.terrain}}</li>
+      <li>Climat: {{planet.climate}}</li>
+    </ul>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% if category == 'starships' %}
+  <h2>VAISSEAUX STAR WARS</h2>
+  {% for starship in swapi.results %}
+  <div class="card">
+    <ul>
+      <li>Nom: {{starship.name}}</li>
+      <li>Modèle: {{starship.model}}</li>
+      <li>Vitesse: {{starship.max_atmosphering_speed}}</li>
+    </ul>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+
+{% endblock %}

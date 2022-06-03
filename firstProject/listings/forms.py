@@ -7,3 +7,13 @@ class UserForm(forms.ModelForm):
         model = User
         fields = '__all__'  # for all fields
         # exclude = ('isMajor',)
+
+
+class SwapiForm(forms.Form):
+    OPTIONS = (
+        ("people", 'personnages'),
+        ("vehicles", 'vehicules'),
+        ("planets", 'planètes'),
+        ("starships", 'vaisseaux')
+    )
+    category = forms.ChoiceField(choices=OPTIONS)

@@ -1,9 +1,10 @@
-from collections import UserList
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import reverse
 from listings.models import User
 from listings.models import Project
 from listings.forms import UserForm
+from listings.forms import SwapiForm
 from django.contrib import messages
 import requests
 import environ
@@ -31,10 +32,14 @@ def counter(request):
         except:
             request.session['count'] = 0
     elif request.method == "POST" and 'counter-' in request.POST:
-        try:
-            request.session['count'] -= 1
-        except:
+        if request.session['count'] != 0:
+            try:
+                request.session['count'] -= 1
+            except:
+                request.session['count'] = 0
+        else:
             request.session['count'] = 0
+
     elif request.method == 'POST' and 'reset' in request.POST:
         request.session['count'] = 0
 
@@ -59,7 +64,7 @@ def addUser(request):
             user = form.save()
             messages.success(
                 request, f"""L'utilisateur {user.firstName} {user.lastName} a été crée.""")
-            return redirect('userDetail', user.id)
+            return redirect('detail', user.id)
     else:
         form = UserForm()
 
@@ -124,3 +129,26 @@ def geoapi(request):
         'city': geodata['city'],
         'url': url
     })
+
+
+def swapi(request):
+
+    if request.method == 'GET':
+        url = f"""https://swapi.dev/api/people/"""
+        response = requests.get(url)
+        swapi = response.json()
+        form = SwapiForm
+        category = 'people'
+    else:
+        form = SwapiForm(request.POST)
+        if form.is_valid():
+            category = form.cleaned_data.get('category')
+            url = f"""https://swapi.dev/api/{category}/"""
+    response = requests.get(url)
+    swapi = response.json()
+    print(f'POST{category}')
+
+    return render(request, 'listings/swapi.html', {
+        'form': form,
+        'swapi': swapi,
+        'category': category})
